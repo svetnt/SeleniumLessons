@@ -1,28 +1,56 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class EE {
-    static String baseUrl = "http://www.99-bottles-of-beer.net/";
 
-    public static void main (String [] args) {
-        System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\Chromedriver\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.get(baseUrl);
-        WebElement buttonTopList = driver.findElement(By.xpath("(//a[@href='/toplist.html'])[1]"));
-        buttonTopList.click();
-        WebElement buttonNewComments = driver.findElement(By.xpath("//a[@href='./newcomments.html']"));
-        buttonNewComments.click();
+    public static void main(String[] args) {
 
-        WebElement par = driver.findElement(By.xpath("(//p)[1]"));
-        String actualRes=par.getText();
+        List<String> color = new ArrayList<>();
+        color.add("White");
+        color.add("Tan");
+        color.add("Yellow");
+        color.add("Orange");
+        color.add("Red");
+        color.add("Pink");
+        color.add("Purple");
+        color.add("Blue");
 
-        System.out.println(actualRes);
+        Iterator<String> iter = color.iterator();
+        while (iter.hasNext()) {
+            String nextColor = iter.next();
+            if (nextColor.toUpperCase().indexOf("L") != -1) {
+                iter.remove();
+            }
+        }
 
-          driver.quit();
+       /* for (String elem : color) {
+            System.out.println(elem);
+        }*/
+        color.stream().forEach(c-> System.out.println(c));
+
+        List<Integer> num = new ArrayList<>();
+        for (int i = 100; i <= 1000; i++) {
+            num.add(i);
+        }
+
+        for(int i=0; i<num.size(); i++){
+            if(num.get(i)%2==0){
+                num.remove(i);
+            }
+        }
+        for(int i=0; i< num.size(); i++){
+            System.out.println(num.get(i));
+        }
+
+      /*  Iterator<Integer> it = num.iterator();
+        while (iter.hasNext()) {
+            Integer numer = it.next();
+            if (numer % 2 == 0) {
+                iter.remove();
+            }
+        }*/
+       // num.stream().filter(n->n%2==0).forEach(n-> System.out.println(n));
     }
 }
+

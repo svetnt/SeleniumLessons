@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -11,8 +12,13 @@ import java.time.Duration;
 public class Main {
     public static void main(String[] args) {
 
-        System.setProperty("webdriver.chrome.driver", "C:\\\\Drivers\\\\Chromedriver\\\\chromedriver.exe");
+
+
+        System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\Chromedriver\\chromedriver.exe");
+
+        WebDriverManager.chromedriver().setup();
         ChromeDriver driver=new ChromeDriver();
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://stepik.org/catalog");
         WebElement element=driver.findElement(By.xpath("//input[@placeholder='Название курса, автор или предмет']"));
