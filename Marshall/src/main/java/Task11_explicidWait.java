@@ -13,14 +13,14 @@ public class Task11_explicidWait extends BaseUtils{
     public static void main(String[] args) {
 
         WebDriver driver = getDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
                         /* Implicit Wait можно использовать для:
                            ожидания полной загрузки страницы — pageLoadTimeout();
                            ожидания появления элемента на странице — implicitlyWait();
                            ожидания выполнения асинхронного запроса — setScriptTimeout();*/
         driver.get("http://suninjuly.github.io/explicit_wait2.html");
 
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(12));
+        WebDriverWait wait = new WebDriverWait(driver,12);
         wait.until(ExpectedConditions.textMatches(By.id("price"), Pattern.compile("100")));
         driver.findElement(By.xpath("//button[text()='Book']")).click();
 
